@@ -2,49 +2,529 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Valentine Message</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine for Shee ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            margin: 0;
             height: 100vh;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3, #a770ef);
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
         }
+        
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
         .card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 25px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            width: 90%;
+            animation: pop 1s ease;
+            z-index: 10;
+            position: relative;
+            border: 8px solid #ffebee;
         }
+        
+        @keyframes pop {
+            from { transform: scale(0.5) rotate(-10deg); opacity: 0; }
+            to { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        
         h1 {
             color: #e91e63;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            position: relative;
+            padding-bottom: 15px;
         }
-        a {
+        
+        h1:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #ff758c, #e91e63);
+            border-radius: 3px;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .yes {
+            background: linear-gradient(to right, #e91e63, #ff4081);
+            color: white;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+        }
+        
+        .yes:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(233, 30, 99, 0.6);
+        }
+        
+        .no {
+            background: linear-gradient(to right, #f8bbd0, #f48fb1);
+            color: #e91e63;
+            box-shadow: 0 5px 15px rgba(244, 143, 177, 0.4);
+        }
+        
+        .no:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(244, 143, 177, 0.6);
+        }
+        
+        #response {
+            margin-top: 25px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #e91e63;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+        }
+        
+        .surprise-link {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 15px;
             padding: 12px 25px;
-            background: #e91e63;
+            background: linear-gradient(to right, #e91e63, #ff4081);
             color: white;
             text-decoration: none;
-            border-radius: 25px;
+            border-radius: 50px;
             font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
         }
-        a:hover {
-            background: #c2185b;
+        
+        .surprise-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.6);
+        }
+        
+        .music-control {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            z-index: 100;
+            color: #e91e63;
+            font-size: 22px;
+        }
+        
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .signature {
+            margin-top: 20px;
+            font-style: italic;
+            color: #888;
+        }
+        
+        .hearts-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart-particle {
+            position: absolute;
+            font-size: 24px;
+            color: #ff4081;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        @keyframes heartExplode {
+            0% { transform: scale(0) translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(2) translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        .pulse {
+            animation: pulse 1.5s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 500px) {
+            .card {
+                padding: 25px;
+                width: 95%;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            button {
+                min-width: 120px;
+                padding: 12px 20px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
-<body>
-    <div class="card">
-        <h1>Will you be my Valentine, Shee? ❤️</h1>
-        <a href="https://example.com" target="_blank">
-            Click here 💌
-        </a>
-    </div>
-</body>
 
+<body>
+    <!-- Music control -->
+    <div class="music-control" id="musicControl">
+        <i class="fas fa-volume-up"></i>
+    </div>
+    
+    <!-- Hearts in background -->
+    <div class="hearts" id="heartsContainer"></div>
+    
+    <!-- Main card -->
+    <div class="card pulse">
+        <h1>Will you be my Valentine, Shee? ❤️</h1>
+        
+        <div class="message">
+            Every moment with you is special, and this Valentine's Day, 
+            I want to make it unforgettable. You mean the world to me!
+        </div>
+        
+        <div class="buttons">
+            <button class="yes" onclick="yesClicked()">
+                <i class="fas fa-heart"></i> Yes 💖
+            </button>
+            <button class="no" onclick="noClicked()" id="noButton">
+                <i class="fas fa-heart-broken"></i> No 😢
+            </button>
+        </div>
+        
+        <div id="response"></div>
+        
+        <div class="signature">Made with ❤️ for Shee</div>
+    </div>
+    
+    <!-- Audio element with a working romantic music source -->
+    <audio id="backgroundMusic" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sunset-687.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            startHeartParticles();
+            
+            // Auto-play music with user interaction
+            const music = document.getElementById('backgroundMusic');
+            const musicControl = document.getElementById('musicControl');
+            let musicPlaying = false;
+            
+            // Play music on first user interaction
+            function playMusic() {
+                if (!musicPlaying) {
+                    music.volume = 0.3;
+                    music.play().then(() => {
+                        musicPlaying = true;
+                        musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    }).catch(e => {
+                        console.log("Autoplay prevented:", e);
+                    });
+                }
+            }
+            
+            // Add click event to whole document to start music
+            document.addEventListener('click', playMusic, { once: true });
+            
+            // Music control toggle
+            musicControl.addEventListener('click', function() {
+                if (musicPlaying) {
+                    music.pause();
+                    musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    musicPlaying = false;
+                } else {
+                    music.play();
+                    musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    musicPlaying = true;
+                }
+            });
+            
+            // Make the "No" button move away when hovered
+            const noButton = document.getElementById('noButton');
+            noButton.addEventListener('mouseover', function() {
+                const x = Math.random() * 80 - 40;
+                const y = Math.random() * 80 - 40;
+                noButton.style.transform = `translate(${x}px, ${y}px)`;
+            });
+            
+            noButton.addEventListener('click', function() {
+                // Move button to random position on click
+                const x = Math.random() * 100 - 50;
+                const y = Math.random() * 100 - 50;
+                noButton.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+        
+        // Create floating hearts in background
+        function createHearts() {
+            const container = document.getElementById('heartsContainer');
+            const heartCount = 25;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                
+                // Random properties
+                const size = Math.random() * 20 + 10;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 3 + 4;
+                
+                heart.style.fontSize = `${size}px`;
+                heart.style.left = `${left}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${delay}s`;
+                heart.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // Create heart particles animation
+        function startHeartParticles() {
+            setInterval(() => {
+                createHeartParticle();
+            }, 500);
+        }
+        
+        function createHeartParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('heart-particle');
+            particle.innerHTML = '❤️';
+            
+            // Random position at bottom
+            const left = Math.random() * 100;
+            particle.style.left = `${left}%`;
+            particle.style.bottom = '0';
+            
+            document.body.appendChild(particle);
+            
+            // Animate
+            const animation = particle.animate([
+                { transform: 'scale(0) translateY(0) rotate(0deg)', opacity: 1 },
+                { transform: `scale(2) translateY(-${Math.random() * 300 + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+            ], {
+                duration: Math.random() * 2000 + 2000,
+                easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+            });
+            
+            // Remove after animation completes
+            animation.onfinish = () => {
+                particle.remove();
+            };
+        }
+        
+        // Yes button clicked
+        function yesClicked() {
+            const response = document.getElementById('response');
+            const card = document.querySelector('.card');
+            
+            // Create explosion of hearts
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    createExplosionHeart();
+                }, i * 50);
+            }
+            
+            // Change card appearance
+            card.style.background = 'linear-gradient(135deg, #ffebee, #fff)';
+            card.style.boxShadow = '0 20px 40px rgba(233, 30, 99, 0.3)';
+            card.classList.remove('pulse');
+            
+            // Show response message
+            response.innerHTML = `
+                <div style="font-size: 2rem; margin-bottom: 10px;">🎉💖🎉</div>
+                <div>You've made me the happiest person! Yayyyy! 💕🥰</div>
+                <div style="margin-top: 15px; font-size: 1.1rem;">I have something special for you 💌</div>
+                <a href="#surprise" class="surprise-link" onclick="showSurprise()">
+                    <i class="fas fa-gift"></i> Click to see your surprise 📸
+                </a>
+            `;
+            
+            // Play happy sound
+            const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-happy-crowd-laugh-464.mp3');
+            audio.volume = 0.5;
+            audio.play();
+        }
+        
+        // No button clicked
+        function noClicked() {
+            const response = document.getElementById('response');
+            const card = document.querySelector('.card');
+            
+            // Change card appearance
+            card.style.background = 'linear-gradient(135deg, #f5f5f5, #fff)';
+            card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
+            
+            // Show response message
+            response.innerHTML = `
+                <div style="font-size: 2rem; margin-bottom: 10px;">😔💔😔</div>
+                <div>My heart is broken... but I'll never give up on you!</div>
+                <div style="margin-top: 15px; font-size: 1rem;">Maybe next time? 🥺</div>
+            `;
+            
+            // Play sad sound
+            const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-cartoon-tumble-weed-whizzing-by-389.mp3');
+            audio.volume = 0.5;
+            audio.play();
+            
+            // Move the "No" button even further
+            const noButton = document.getElementById('noButton');
+            setTimeout(() => {
+                noButton.style.transform = 'translate(100px, 50px)';
+            }, 100);
+        }
+        
+        // Create explosion hearts
+        function createExplosionHeart() {
+            const particle = document.createElement('div');
+            particle.classList.add('heart-particle');
+            particle.innerHTML = '❤️';
+            particle.style.fontSize = '28px';
+            
+            // Start from center of card
+            const card = document.querySelector('.card');
+            const cardRect = card.getBoundingClientRect();
+            const centerX = cardRect.left + cardRect.width / 2;
+            const centerY = cardRect.top + cardRect.height / 2;
+            
+            particle.style.left = `${centerX}px`;
+            particle.style.top = `${centerY}px`;
+            particle.style.position = 'fixed';
+            
+            document.body.appendChild(particle);
+            
+            // Random direction
+            const angle = Math.random() * Math.PI * 2;
+            const distance = Math.random() * 150 + 50;
+            const targetX = centerX + Math.cos(angle) * distance;
+            const targetY = centerY + Math.sin(angle) * distance;
+            
+            // Animate
+            const animation = particle.animate([
+                { transform: 'scale(0) rotate(0deg)', opacity: 1, left: `${centerX}px`, top: `${centerY}px` },
+                { transform: 'scale(1.5) rotate(180deg)', opacity: 0.7, left: `${targetX}px`, top: `${targetY}px` }
+            ], {
+                duration: 1000,
+                easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+            });
+            
+            // Remove after animation completes
+            animation.onfinish = () => {
+                particle.remove();
+            };
+        }
+        
+        // Show surprise
+        function showSurprise() {
+            const response = document.getElementById('response');
+            response.innerHTML = `
+                <div style="font-size: 2rem; margin-bottom: 15px;">💌🎁✨</div>
+                <div style="font-size: 1.3rem; margin-bottom: 10px;">For my dearest Shee,</div>
+                <div style="text-align: left; line-height: 1.6; margin-bottom: 20px;">
+                    You are the most amazing person I know!<br>
+                    Your smile brightens my day,<br>
+                    Your laughter is my favorite melody,<br>
+                    And your heart is my home.<br><br>
+                    Happy Valentine's Day, my love! 💕
+                </div>
+                <div style="display: flex; justify-content: center; gap: 10px; margin-top: 15px;">
+                    <span style="font-size: 2rem;">❤️</span>
+                    <span style="font-size: 2rem;">🥰</span>
+                    <span style="font-size: 2rem;">💖</span>
+                    <span style="font-size: 2rem;">😘</span>
+                    <span style="font-size: 2rem;">💕</span>
+                </div>
+            `;
+            
+            // Scroll to response
+            response.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
 </html>
